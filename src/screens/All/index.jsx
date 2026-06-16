@@ -1,7 +1,7 @@
 import { ScrollView, StyleSheet, View } from 'react-native';
 import React from 'react';
-import { Button, Divider, IconButton, Text } from 'react-native-paper';
-import FootBar from '../../components/Footbar';
+import { Divider, IconButton, Text } from 'react-native-paper';
+
 import { FontAwesomeFreeSolid } from '@react-native-vector-icons/fontawesome-free-solid';
 const Repairs = ({ navigation }) => {
   return (
@@ -27,7 +27,7 @@ const Repairs = ({ navigation }) => {
         <Divider style={{ marginVertical: 22 }} />
         <View></View>
       </ScrollView>
-      <FootBar />
+      {/* <FootBar /> */}
     </View>
   );
 };

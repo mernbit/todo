@@ -1,6 +1,6 @@
 import { StyleSheet, useColorScheme, View } from 'react-native';
 import React, { useEffect } from 'react';
-import { Checkbox, Chip, Text } from 'react-native-paper';
+import { Checkbox, Chip, Divider, Text } from 'react-native-paper';
 import { deleteTodo } from '../../database/queries/DeleteTodo';
 import EvilIcons from '@react-native-vector-icons/evil-icons';
 import { useTabContext } from '../../contexts/TabContext';
@@ -108,33 +108,41 @@ const Data = () => {
         </Chip>
       </View>
       {filterTodos(todos, status)?.map(t => (
-        <View style={styles.card} key={t.id}>
-          <View>
-            <Text variant="headlineSmall">{t.title}</Text>
-            <Text variant="titleSmall">
-              {new Date(t.createdAt).toLocaleString()}
-            </Text>
+        <View key={t.id} style={styles.card}>
+          <View style={styles.cardData}>
+            <View>
+              <Text variant="headlineSmall">{t.title}</Text>
+              <Text variant="titleSmall">
+                {new Date(t.createdAt).toLocaleString()}
+              </Text>
+            </View>
+            <View
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                alignItems: 'center',
+                gap: 0,
+              }}
+            >
+              <EvilIcons
+                name="trash"
+                size={24}
+                color="red"
+                onPress={() => onDelete(t.id)}
+              />
+              <Checkbox
+                color="black"
+                disabled={status == 'complete'}
+                status={
+                  checked[t.id] || t.isCompleted ? 'checked' : 'unchecked'
+                }
+                onPress={() => onCheck(t.id, t.title, t.description, 1)}
+              />
+            </View>
           </View>
-          <View
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'center',
-              gap: 0,
-            }}
-          >
-            <EvilIcons
-              name="trash"
-              size={24}
-              color="red"
-              onPress={() => onDelete(t.id)}
-            />
-            <Checkbox
-              color="black"
-              disabled={status == 'complete'}
-              status={checked[t.id] || t.isCompleted ? 'checked' : 'unchecked'}
-              onPress={() => onCheck(t.id, t.title, t.description, 1)}
-            />
+          <Divider />
+          <View style={styles.cardDescription}>
+            <Text>{t.description}</Text>
           </View>
         </View>
       ))}
@@ -145,17 +153,25 @@ const Data = () => {
 export default Data;
 
 const styles = StyleSheet.create({
-  card: {
-    // borderWidth: 1,
-    boxShadow: '2px 2px 5px rgba(0, 0, 0, 0.1)',
-    borderColor: '#ccc',
-    borderRadius: 8,
-    padding: 16,
-    marginBottom: 12,
-    backgroundColor: '#f9f9f9',
+  cardData: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+  },
+  card: {
+    padding: 16,
+    marginVertical: 8,
+    borderWidth: 1,
+    boxShadow: '2px 2px 5px rgba(0, 0, 0, 0.1)',
+    borderColor: '#ccc',
+    borderRadius: 8,
+    backgroundColor: '#f9f9f9',
+  },
+  cardDescription: {
+    backgroundColor: '#dcdcdc',
+    marginTop: 12,
+    padding: 10,
+    borderRadius: 6,
   },
 });

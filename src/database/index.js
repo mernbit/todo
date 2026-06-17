@@ -26,7 +26,7 @@ export const initDb = async () => {
         title TEXT NOT NULL,
         description TEXT,
         isCompleted INTEGER DEFAULT 0,
-        created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+        createdAt DATETIME DEFAULT CURRENT_TIMESTAMP
         )`,
       );
     }

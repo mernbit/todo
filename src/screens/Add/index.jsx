@@ -5,26 +5,28 @@ import { EvilIcons } from '@react-native-vector-icons/evil-icons';
 import Form from './Form';
 import { addTodo } from '../../database/queries/AddTodo';
 import { initDb } from '../../database';
+import { useTabContext } from '../../contexts/TabContext';
 const Add = ({ navigation }) => {
   // const db = initDb();
   const [db, setDb] = useState(null);
+  const { setup: refreshTodos } = useTabContext();
   const [todo, setTodo] = useState({
     title: '',
     description: '',
   });
+  const setup = async () => {
+    const database = await initDb();
+    setDb(database);
+  };
   useEffect(() => {
-    const setup = async () => {
-      const database = await initDb();
-      setDb(database);
-    };
     setup();
   }, []);
-
   const onSave = async () => {
     if (!db) return;
     const success = await addTodo(db, todo.title, todo.description);
     if (success) {
-      navigation.navigate('All');
+      refreshTodos();
+      navigation.goBack();
     }
   };
   return (
@@ -47,7 +49,7 @@ const Add = ({ navigation }) => {
         >
           <EvilIcons
             onPress={() => {
-              navigation.navigate('All');
+              navigation.goBack();
             }}
             name="chevron-left"
             size={45}

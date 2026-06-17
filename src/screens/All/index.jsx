@@ -1,7 +1,13 @@
-import { ScrollView, StyleSheet, View } from 'react-native';
+import {
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import React from 'react';
 import { Divider, IconButton, Text } from 'react-native-paper';
-
+import Data from './Data';
 import { FontAwesomeFreeSolid } from '@react-native-vector-icons/fontawesome-free-solid';
 const Repairs = ({ navigation }) => {
   return (
@@ -12,20 +18,24 @@ const Repairs = ({ navigation }) => {
             All Todos
           </Text>
 
-          <IconButton
-            contentStyle={{ margin: 0, padding: 0 }}
-            mode="contained"
-            style={styles.add}
-            onPress={() => {
-              navigation.navigate('Add');
-            }}
-            icon={() => (
-              <FontAwesomeFreeSolid name="plus" size={20} color="white" />
-            )}
-          />
+          <TouchableOpacity activeOpacity={0.8}>
+            <IconButton
+              contentStyle={{ margin: 0, padding: 0 }}
+              mode="contained"
+              style={styles.add}
+              onPress={() => {
+                navigation.navigate('Add');
+              }}
+              icon={() => (
+                <FontAwesomeFreeSolid name="plus" size={20} color="white" />
+              )}
+            />
+          </TouchableOpacity>
         </View>
         <Divider style={{ marginVertical: 22 }} />
-        <View></View>
+        <View>
+          <Data />
+        </View>
       </ScrollView>
       {/* <FootBar /> */}
     </View>

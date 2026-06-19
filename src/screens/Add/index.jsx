@@ -41,7 +41,10 @@ const Add = ({ navigation }) => {
     }
   };
   return (
-    <ScrollView style={{ paddingHorizontal: 18, flex: 1 }}>
+    <ScrollView
+      keyboardShouldPersistTaps="handled"
+      style={{ paddingHorizontal: 18, flex: 1 }}
+    >
       <View
         style={{
           display: 'flex',

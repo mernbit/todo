@@ -1,11 +1,18 @@
-import { StyleSheet, useColorScheme, View } from 'react-native';
+import {
+  Alert,
+  Pressable,
+  StyleSheet,
+  TouchableOpacity,
+  useColorScheme,
+  View,
+} from 'react-native';
 import React, { useEffect } from 'react';
 import { Checkbox, Chip, Divider, Text } from 'react-native-paper';
 import { deleteTodo } from '../../database/queries/DeleteTodo';
 import EvilIcons from '@react-native-vector-icons/evil-icons';
 import { useTabContext } from '../../contexts/TabContext';
 import MaterialDesignIcons from '@react-native-vector-icons/material-design-icons';
-const Data = () => {
+const Data = ({ navigation }) => {
   const { db, todos, setup, status, setStatus, onCheck, checked, setChecked } =
     useTabContext();
 
@@ -108,7 +115,12 @@ const Data = () => {
         </Chip>
       </View>
       {filterTodos(todos, status)?.map(t => (
-        <View key={t.id} style={styles.card}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('Edit', { todoId: t.id })}
+          key={t.id}
+          activeOpacity={0.5}
+          style={styles.card}
+        >
           <View style={styles.cardData}>
             <View>
               <Text variant="headlineSmall">{t.title}</Text>
@@ -144,7 +156,7 @@ const Data = () => {
           <View style={styles.cardDescription}>
             <Text>{t.description}</Text>
           </View>
-        </View>
+        </TouchableOpacity>
       ))}
     </View>
   );

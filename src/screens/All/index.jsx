@@ -9,7 +9,7 @@ import React from 'react';
 import { Divider, IconButton, Text } from 'react-native-paper';
 import Data from './Data';
 import { FontAwesomeFreeSolid } from '@react-native-vector-icons/fontawesome-free-solid';
-const Repairs = ({ navigation }) => {
+const AllTodos = ({ navigation }) => {
   return (
     <View style={{ paddingHorizontal: 18, flex: 1 }}>
       <ScrollView style={{ flex: 1 }}>
@@ -18,7 +18,7 @@ const Repairs = ({ navigation }) => {
             All Todos
           </Text>
 
-          <TouchableOpacity activeOpacity={0.8}>
+          <TouchableOpacity activeOpacity={0.5}>
             <IconButton
               contentStyle={{ margin: 0, padding: 0 }}
               mode="contained"
@@ -34,7 +34,7 @@ const Repairs = ({ navigation }) => {
         </View>
         <Divider style={{ marginVertical: 22 }} />
         <View>
-          <Data />
+          <Data navigation={navigation} />
         </View>
       </ScrollView>
       {/* <FootBar /> */}
@@ -42,7 +42,7 @@ const Repairs = ({ navigation }) => {
   );
 };
 
-export default Repairs;
+export default AllTodos;
 
 const styles = StyleSheet.create({
   heading: {

@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 import All from './All';
 import Add from './Add';
+import Edit from './Edit';
 import { DefaultTheme } from 'react-native-paper';
 
 const Routes = () => {
@@ -21,6 +22,7 @@ const Routes = () => {
         <Stack.Navigator screenOptions={{ headerShown: false }}>
           <Stack.Screen name="All" component={All} />
           <Stack.Screen name="Add" component={Add} />
+          <Stack.Screen name="Edit" component={Edit} />
         </Stack.Navigator>
       </NavigationContainer>
     </View>

@@ -27,10 +27,12 @@ const TabProvider = ({ children }) => {
   }, []);
   const onCheck = async (id, title, description, status) => {
     if (!db) return;
-    // setChecked(!checked);
-    setChecked(prev => ({ ...prev, [id]: !prev[id] }));
-    if (checked[id]) {
+    const newChecked = !checked[id];
+    setChecked(prev => ({ ...prev, [id]: newChecked }));
+    console.log('Function Stage 1');
+    if (newChecked) {
       updateTodo(db, id, title, description, status);
+      console.log('Function Stage 2');
       setup();
     }
   };

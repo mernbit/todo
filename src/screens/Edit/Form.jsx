@@ -1,0 +1,50 @@
+import { StyleSheet, View } from 'react-native';
+import React from 'react';
+import { TextInput, Text } from 'react-native-paper';
+const Form = ({ todo, setData }) => {
+  console.log('Edit todo form reporting: ', todo);
+  let isDisabled = Boolean(todo.isCompleted);
+  return (
+    <View style={{ marginTop: 36, gap: 22 }}>
+      <Text variant="titleLarge">Todo Details</Text>
+      <View>
+        <Text>Title</Text>
+        <TextInput
+          cursorColor="gray"
+          label="Title"
+          value={todo.title}
+          style={styles.input}
+          disabled={isDisabled}
+          underlineColor="transparent"
+          activeUnderlineColor="transparent"
+          onChangeText={text => setData(prev => ({ ...prev, title: text }))}
+        />
+      </View>
+      <View>
+        <Text>Description</Text>
+        <TextInput
+          cursorColor="gray"
+          label="Description"
+          value={todo.description}
+          disabled={isDisabled}
+          style={styles.input}
+          underlineColor="transparent"
+          activeUnderlineColor="transparent"
+          onChangeText={text =>
+            setData(prev => ({ ...prev, description: text }))
+          }
+        />
+      </View>
+    </View>
+  );
+};
+
+export default Form;
+
+const styles = StyleSheet.create({
+  input: {
+    borderRadius: 8,
+    backgroundColor: '#e8e8e8ff',
+    marginTop: 8,
+  },
+});

@@ -6,6 +6,7 @@ import Form from './Form';
 import { addTodo } from '../../database/queries/AddTodo';
 import { initDb } from '../../database';
 import { useTabContext } from '../../contexts/TabContext';
+import Toast from 'react-native-toast-message';
 const Add = ({ navigation }) => {
   // const db = initDb();
   const [db, setDb] = useState(null);
@@ -25,8 +26,18 @@ const Add = ({ navigation }) => {
     if (!db) return;
     const success = await addTodo(db, todo.title, todo.description);
     if (success) {
+      Toast.show({
+        type: 'success',
+        text1: 'Success',
+        text2: 'Todo saved successfully!',
+      });
       refreshTodos();
       navigation.goBack();
+    } else {
+      Toast.show({
+        type: 'error',
+        text1: 'Failed to save todo!',
+      });
     }
   };
   return (

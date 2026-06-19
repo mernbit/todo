@@ -19,6 +19,7 @@ export const initDb = async () => {
     if (!db) {
       db = open({
         name: 'todo.db',
+        location: 'default',
       });
       await db.execute(
         `CREATE TABLE IF NOT EXISTS todos(

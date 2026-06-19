@@ -6,6 +6,7 @@ import Form from './Form';
 import { updateTodo } from '../../database/queries/UpdateTodo';
 import { getSingle } from '../../database/queries/GetSingle';
 import { useTabContext } from '../../contexts/TabContext';
+import Toast from 'react-native-toast-message';
 const Edit = ({ navigation, route }) => {
   const { setup: refreshTodos, db } = useTabContext();
   const { todoId } = route.params;
@@ -30,6 +31,11 @@ const Edit = ({ navigation, route }) => {
     );
     if (success) {
       refreshTodos();
+      Toast.show({
+        type: 'success',
+        text1: 'Success',
+        text2: 'Todo Updated Successfully',
+      });
       navigation.goBack();
     }
   };

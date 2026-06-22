@@ -11,8 +11,8 @@ import Data from './Data';
 import { FontAwesomeFreeSolid } from '@react-native-vector-icons/fontawesome-free-solid';
 const AllTodos = ({ navigation }) => {
   return (
-    <View style={{ paddingHorizontal: 18, flex: 1 }}>
-      <ScrollView style={{ flex: 1 }}>
+    <ScrollView style={{ flex: 1 }}>
+      <View style={{ paddingHorizontal: 18, flex: 1 }}>
         <View style={styles.heading}>
           <Text variant="headlineLarge" style={{ fontWeight: 'semibold' }}>
             All Todos
@@ -36,9 +36,9 @@ const AllTodos = ({ navigation }) => {
         <View>
           <Data navigation={navigation} />
         </View>
-      </ScrollView>
-      {/* <FootBar /> */}
-    </View>
+        {/* <FootBar /> */}
+      </View>
+    </ScrollView>
   );
 };
 
